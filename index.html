@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, viewport-fit=cover"
+		/>
+		<title>The AI Bubble Clock</title>
+		<meta
+			name="description"
+			content="A live countdown to the AI bubble popping, plus every bubble that came before it. Satire, with real numbers."
+		/>
+		<link
+			rel="canonical"
+			href="https://aibubble.acdev.app/"
+		/>
+		<meta
+			name="theme-color"
+			content="#1a0b06"
+		/>
+
+		<meta
+			property="og:type"
+			content="website"
+		/>
+		<meta
+			property="og:site_name"
+			content="The AI Bubble Clock"
+		/>
+		<meta
+			property="og:title"
+			content="The time for AI has come."
+		/>
+		<meta
+			property="og:description"
+			content="China's AI stocks are down 40%. Alphabet just had its worst day ever. The bubble's clock is ticking."
+		/>
+		<meta
+			property="og:url"
+			content="https://aibubble.acdev.app/"
+		/>
+		<meta
+			property="og:image"
+			content="https://aibubble.acdev.app/og.png"
+		/>
+		<meta
+			property="og:image:width"
+			content="1200"
+		/>
+		<meta
+			property="og:image:height"
+			content="630"
+		/>
+		<meta
+			property="og:image:alt"
+			content="An hourglass next to the text: The time for AI has come."
+		/>
+
+		<meta
+			name="twitter:card"
+			content="summary_large_image"
+		/>
+		<meta
+			name="twitter:title"
+			content="The time for AI has come."
+		/>
+		<meta
+			name="twitter:description"
+			content="China's AI stocks are down 40%. Alphabet just had its worst day ever. The bubble's clock is ticking."
+		/>
+		<meta
+			name="twitter:image"
+			content="https://aibubble.acdev.app/og.png"
+		/>
+		<meta
+			name="twitter:image:alt"
+			content="An hourglass next to the text: The time for AI has come."
+		/>
+
+		<!--<link
+			rel="icon"
+			href="/favicon.svg"
+			type="image/svg+xml"
+		/>
+		<link
+			rel="icon"
+			href="/favicon-32.png"
+			sizes="32x32"
+			type="image/png"
+		/>-->
+		<link
+			rel="icon"
+			href="/favicon.ico"
+			type="image/x-icon"
+		/>
+		<link
+			rel="apple-touch-icon"
+			href="/apple-touch-icon.png"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;600;800&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--bg: #1a0b06;
+				--bg2: #2b0f07;
+				--ember: #ff3d1f;
+				--sun: #ffc21a;
+				--bone: #f4e1c0;
+				--rust: #8a2410;
+				--d: 'Big Shoulders Display', 'Impact', 'Arial Narrow', sans-serif;
+				--b: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;
+				box-sizing: border-box;
+				padding-top: env(safe-area-inset-top, 0px);
+				padding-bottom: env(safe-area-inset-bottom, 0px);
+			}
+			*,
+			*::before,
+			*::after {
+				box-sizing: inherit;
+			}
+			html {
+				scroll-padding-top: env(safe-area-inset-top, 0px);
+			}
+			body {
+				margin: 0;
+				background: radial-gradient(
+						120% 70% at 50% 0%,
+						#5a1507 0%,
+						var(--bg) 60%
+					)
+					fixed;
+				color: var(--bone);
+				font: 400 1.05rem/1.55 var(--b);
+			}
+			.wrap {
+				max-width: 760px;
+				margin: 0 auto;
+				padding: 28px 20px 60px;
+			}
+			h1 {
+				font: 900 clamp(3.4rem, 17vw, 7.5rem) / 0.82 var(--d);
+				margin: 0.1em 0 0.15em;
+				color: var(--sun);
+				letter-spacing: -0.01em;
+				text-shadow: 3px 0 var(--ember), -3px 0 var(--rust);
+				animation: flick 5s steps(1) infinite;
+			}
+			@keyframes flick {
+				0%,
+				92%,
+				100% {
+					opacity: 1;
+					transform: none;
+				}
+				93% {
+					opacity: 0.55;
+					transform: translateX(-4px);
+				}
+				94% {
+					opacity: 1;
+					transform: translateX(5px) skewX(-3deg);
+				}
+				96% {
+					opacity: 0.7;
+					transform: none;
+				}
+			}
+			.lede {
+				font-size: 1.15rem;
+				max-width: 34ch;
+				margin: 0 0 24px;
+				color: var(--bone);
+			}
+			.stage {
+				display: flex;
+				gap: 18px;
+				align-items: center;
+				justify-content: space-between;
+				margin: 10px 0 8px;
+			}
+			.clock {
+				flex: 1;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 6px 14px;
+			}
+			.u {
+				border-left: 4px solid var(--ember);
+				padding-left: 10px;
+			}
+			.u b {
+				display: block;
+				font: 900 clamp(3.6rem, 17vw, 6.4rem) / 0.9 var(--d);
+				color: var(--bone);
+				font-variant-numeric: tabular-nums;
+			}
+			.u span {
+				font: 600 0.95rem var(--b);
+				color: var(--sun);
+			}
+			.u.s b {
+				color: var(--ember);
+			}
+			.glass {
+				width: clamp(90px, 24vw, 150px);
+				flex: none;
+				filter: drop-shadow(0 0 22px rgba(255, 61, 31, 0.45));
+			}
+			.glass .sand {
+				fill: var(--sun);
+			}
+			#top {
+				transform-box: fill-box;
+				transform-origin: bottom;
+				animation: drain 9s linear infinite;
+			}
+			#bot {
+				transform-box: fill-box;
+				transform-origin: bottom;
+				animation: fill 9s linear infinite;
+			}
+			#str {
+				stroke: var(--sun);
+				stroke-width: 2;
+				stroke-dasharray: 4 5;
+				animation: fall 0.5s linear infinite, vis 9s linear infinite;
+			}
+			@keyframes drain {
+				0% {
+					transform: scaleY(1);
+				}
+				95%,
+				100% {
+					transform: scaleY(0);
+				}
+			}
+			@keyframes fill {
+				0% {
+					transform: scaleY(0);
+				}
+				95%,
+				100% {
+					transform: scaleY(1);
+				}
+			}
+			@keyframes fall {
+				to {
+					stroke-dashoffset: -18;
+				}
+			}
+			@keyframes vis {
+				0%,
+				93% {
+					opacity: 1;
+				}
+				96%,
+				100% {
+					opacity: 0;
+				}
+			}
+			.note {
+				font-size: 0.85rem;
+				color: #c9a97f;
+				margin: 6px 0 0;
+			}
+			section {
+				margin-top: 56px;
+			}
+			h2 {
+				font: 900 clamp(2.2rem, 9vw, 3.6rem) / 0.9 var(--d);
+				margin: 0 0 6px;
+				color: var(--bone);
+			}
+			.sub {
+				margin: 0 0 22px;
+				color: #d9bf98;
+				max-width: 44ch;
+			}
+			.row {
+				display: grid;
+				grid-template-columns: minmax(96px, 128px) 1fr;
+				gap: 14px;
+				padding: 18px 0;
+				border-top: 2px solid var(--rust);
+			}
+			.row:first-of-type {
+				border-top: 0;
+			}
+			.row .n {
+				font: 900 clamp(2.6rem, 12vw, 3.8rem) / 0.85 var(--d);
+				color: var(--ember);
+			}
+			.row .n small {
+				display: block;
+				font: 600 0.8rem/1.2 var(--b);
+				color: var(--sun);
+				margin-top: 4px;
+			}
+			.row h3 {
+				margin: 0 0 4px;
+				font: 800 1.25rem/1.2 var(--b);
+				color: var(--bone);
+			}
+			.row p {
+				margin: 0;
+				color: #d9bf98;
+			}
+			.now {
+				background: var(--ember);
+				color: #1a0b06;
+			}
+			.now .n,
+			.now h3,
+			.now p,
+			.now .n small {
+				color: #1a0b06;
+			}
+			.now {
+				padding: 18px 14px;
+				border-radius: 2px;
+			}
+			.live {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 12px;
+			}
+			.stat {
+				background: #2b0f07;
+				border-left: 5px solid var(--sun);
+				padding: 14px 14px 16px;
+			}
+			.stat.big {
+				grid-column: 1/-1;
+				background: var(--ember);
+				border-left-color: var(--bg);
+				color: #1a0b06;
+			}
+			.stat b {
+				display: block;
+				font: 900 clamp(3rem, 15vw, 5rem) / 0.85 var(--d);
+				color: var(--sun);
+			}
+			.stat.big b {
+				color: #1a0b06;
+				font-size: clamp(4.5rem, 24vw, 8rem);
+			}
+			.stat h3 {
+				margin: 6px 0 2px;
+				font: 800 1.1rem/1.2 var(--b);
+			}
+			.stat p {
+				margin: 0;
+				font-size: 0.95rem;
+				color: #d9bf98;
+			}
+			.stat.big p {
+				color: #1a0b06;
+			}
+			.caveat {
+				margin: 16px 0 0;
+				color: #d9bf98;
+				font-size: 0.95rem;
+				max-width: 52ch;
+			}
+			.card {
+				margin-top: 56px;
+				background: var(--bone);
+				color: #1a0b06;
+				padding: 22px 20px;
+				border-radius: 14px;
+				border: 3px solid var(--sun);
+				box-shadow: 8px 8px 0 var(--ember);
+			}
+			.card q {
+				display: block;
+				font: 900 clamp(1.9rem, 8vw, 2.8rem) / 0.95 var(--d);
+				quotes: none;
+				margin-bottom: 14px;
+			}
+			.btns {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+			}
+			.btn {
+				font: 800 1rem var(--b);
+				padding: 12px 18px;
+				border: 2px solid #1a0b06;
+				background: #1a0b06;
+				color: var(--sun);
+				border-radius: 999px;
+				text-decoration: none;
+				cursor: pointer;
+			}
+			.btn.alt {
+				background: transparent;
+				color: #1a0b06;
+			}
+			.btn:focus-visible,
+			a:focus-visible {
+				outline: 3px solid var(--ember);
+				outline-offset: 3px;
+			}
+			footer {
+				margin-top: 40px;
+				font-size: 0.82rem;
+				color: #b08e66;
+			}
+			#boom {
+				display: none;
+			}
+			.dead #boom {
+				display: block;
+			}
+			.dead .clock {
+				display: none;
+			}
+			@media (prefers-reduced-motion: reduce) {
+				* {
+					animation: none !important;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div
+			class="wrap"
+			id="app"
+		>
+			<h1>The time has come.</h1>
+			<p class="lede">
+				Trillions poured into a chatbot. The wobble has started. Here is the
+				clock.
+			</p>
+
+			<div class="stage">
+				<div
+					class="clock"
+					id="clock"
+					aria-live="off"
+				>
+					<div class="u"><b id="d">00</b><span>days</span></div>
+					<div class="u"><b id="h">00</b><span>hours</span></div>
+					<div class="u"><b id="m">00</b><span>minutes</span></div>
+					<div class="u s"><b id="s">00</b><span>seconds</span></div>
+				</div>
+				<svg
+					class="glass"
+					viewBox="0 0 120 200"
+					role="img"
+					aria-label="Hourglass running out of sand"
+				>
+					<defs>
+						<clipPath id="g">
+							<path
+								id="gp"
+								d="M22 14H98V24C98 66 66 88 66 100C66 112 98 134 98 176V186H22V176C22 134 54 112 54 100C54 88 22 66 22 24Z"
+							/>
+						</clipPath>
+					</defs>
+					<rect
+						x="10"
+						y="4"
+						width="100"
+						height="10"
+						rx="3"
+						fill="#8a2410"
+					/>
+					<rect
+						x="10"
+						y="186"
+						width="100"
+						height="10"
+						rx="3"
+						fill="#8a2410"
+					/>
+					<g clip-path="url(#g)">
+						<rect
+							id="top"
+							class="sand"
+							x="20"
+							y="24"
+							width="80"
+							height="72"
+						/>
+						<rect
+							id="bot"
+							class="sand"
+							x="20"
+							y="108"
+							width="80"
+							height="78"
+						/>
+						<line
+							id="str"
+							x1="60"
+							y1="98"
+							x2="60"
+							y2="186"
+						/>
+					</g>
+					<path
+						d="M22 14H98V24C98 66 66 88 66 100C66 112 98 134 98 176V186H22V176C22 134 54 112 54 100C54 88 22 66 22 24Z"
+						fill="none"
+						stroke="#f4e1c0"
+						stroke-width="4"
+						stroke-linejoin="round"
+					/>
+				</svg>
+			</div>
+			<p class="note">
+				Target date is a joke. Nobody knows. That is the point of a bubble.
+			</p>
+			<h2 id="boom">It popped.</h2>
+
+			<section>
+				<h2>This is happening right now.</h2>
+				<p class="sub">
+					This week the AI trade cracked, and China cracked first.
+				</p>
+				<div class="live">
+					<div class="stat big">
+						<b>-40%</b>
+						<h3>China's AI and chip stocks</h3>
+						<p>
+							The STAR 50 is down nearly 40% from its July peak. About $480
+							billion of value is gone in under four months. Goldman Sachs says
+							AI makes up 42% of China's total market value.
+						</p>
+					</div>
+					<div class="stat">
+						<b>-13%</b>
+						<h3>Alphabet, in one day</h3>
+						<p>
+							Google's parent had its worst session since it went public in
+							2004, losing about $482 billion.
+						</p>
+					</div>
+					<div class="stat">
+						<b>-9%</b>
+						<h3>Amazon, after hours</h3>
+						<p>
+							Shares fell as much as 9% on an earnings miss, with record cash
+							burn on AI spending.
+						</p>
+					</div>
+					<div class="stat">
+						<b>-6%</b>
+						<h3>Nasdaq from its peak</h3>
+						<p>
+							The index was about 6% under the record high it set three weeks
+							earlier, and AI stocks led the slide.
+						</p>
+					</div>
+					<div class="stat">
+						<b>-7%</b>
+						<h3>Meta, a week ago</h3>
+						<p>
+							It dropped about 7% on October 22, while Nvidia lost 4.4% the same
+							day.
+						</p>
+					</div>
+				</div>
+				<p class="caveat">
+					To be fair, this is not a full collapse yet. Alphabet's cloud revenue
+					still doubled, and US indexes are only a few percent down. The
+					sell-off is about whether the AI spending pays off. China is the
+					canary.
+				</p>
+			</section>
+
+			<section>
+				<h2>It has happened before.</h2>
+				<p class="sub">
+					Every time, the people inside said this one was different.
+				</p>
+				<div class="row">
+					<div class="n">1637<small>Tulip mania</small></div>
+					<div>
+						<h3>Flowers priced like houses</h3>
+						<p>
+							Bulb contracts in the Netherlands soared, then prices collapsed in
+							a matter of weeks. Nobody wanted a tulip anymore.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="n">1720<small>South Sea Bubble</small></div>
+					<div>
+						<h3>A company with a story and no profits</h3>
+						<p>
+							British investors, including Isaac Newton, piled into South Sea
+							shares. The crash left Newton bitter about losing a fortune.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="n">1840s<small>Railway mania</small></div>
+					<div>
+						<h3>Real tech, wrecked investors</h3>
+						<p>
+							Railways did change the world. Plenty of the people who funded
+							them still went broke. Real technology and a bubble can be the
+							same thing.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="n">1929<small>Wall Street crash</small></div>
+					<div>
+						<h3>Margin, hype and a long fall</h3>
+						<p>
+							The Dow lost roughly 89% from peak to bottom by 1932 and took
+							until 1954 to get back.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="n">1989<small>Japan</small></div>
+					<div>
+						<h3>Nikkei at 38,915</h3>
+						<p>
+							It took until 2024 to climb back to that peak. Thirty-four years.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="n">2000<small>Dot-com</small></div>
+					<div>
+						<h3>Add ".com" to your name, watch the stock rip</h3>
+						<p>
+							The Nasdaq fell about 78% from March 2000 to October 2002.
+							Pets.com did not survive. Amazon did. Expect both outcomes.
+						</p>
+					</div>
+				</div>
+				<div class="row now">
+					<div class="n">Now<small>AI</small></div>
+					<div>
+						<h3>Same story, new buzzword</h3>
+						<p>
+							Huge spending, thin profits, a pitch that says it is different
+							this time. We will see.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<div class="card">
+				<q
+					>The AI bubble clock is ticking. Screenshot this before it hits
+					zero.</q
+				>
+				<div class="btns">
+					<a
+						class="btn"
+						id="tw"
+						target="_blank"
+						rel="noopener"
+						>Post on X</a
+					>
+					<button
+						class="btn alt"
+						id="cp"
+						type="button"
+					>
+						Copy the text
+					</button>
+				</div>
+			</div>
+
+			<footer>
+				Satire, not a prediction and not financial advice. Historical figures
+				are approximate.
+				<br /><br />
+				<span style="display: flex; justify-content: space-between">
+					<span>Developed by acdev in 🇺🇦</span
+					><a
+						class="sub"
+						href="https://github.com/qaptivator/ai-bubble-clock"
+						target="blank"
+						rel="noopener noreferrer"
+						>See it on GitHub</a
+					>
+				</span>
+			</footer>
+		</div>
+		<script>
+			;(function () {
+				var target = new Date('2027-06-01T00:00:00Z').getTime()
+				var $ = function (i) {
+					return document.getElementById(i)
+				}
+				function pad(n) {
+					return String(n).padStart(2, '0')
+				}
+				function tick() {
+					var t = Math.max(0, target - Date.now())
+					if (t === 0) document.getElementById('app').classList.add('dead')
+					var s = Math.floor(t / 1000)
+					$('d').textContent = pad(Math.floor(s / 86400))
+					$('h').textContent = pad(Math.floor((s % 86400) / 3600))
+					$('m').textContent = pad(Math.floor((s % 3600) / 60))
+					$('s').textContent = pad(s % 60)
+				}
+				tick()
+				setInterval(tick, 1000)
+				var msg =
+					"The time for AI has come. The bubble's clock is ticking.\nhttps://aibubble.acdev.app/?utm_source=x_post"
+				$('tw').href =
+					'https://twitter.com/intent/tweet?text=' + encodeURIComponent(msg)
+				$('cp').addEventListener('click', function () {
+					var b = this
+					try {
+						navigator.clipboard.writeText(msg).then(function () {
+							b.textContent = 'Copied'
+						})
+					} catch (e) {
+						b.textContent = 'Copy failed'
+					}
+				})
+			})()
+		</script>
+		<!-- Cloudflare Web Analytics -->
+		<script
+			type="module"
+			src="https://static.cloudflareinsights.com/beacon.min.js"
+			data-cf-beacon='{"token": "0b1374da5b644d3a9fce192d549b58fe"}'
+		></script>
+		<!-- End Cloudflare Web Analytics -->
+	</body>
+</html>
